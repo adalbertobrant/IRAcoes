@@ -1,6 +1,6 @@
 # IR - Ações !
 
-<img src="C:\treinadev\IRAcoes\imagens\pexels-rodnae-productions-7947707(2).png" alt="pexels-rodnae-productions-7947707 (2)" style="zoom:50%;" />
+<img src="imagens\pexels-rodnae-productions-7947707(2).png" alt="pexels-rodnae-productions-7947707 (2)" style="zoom:50%;" />
 
 Calculadora de Imposto de Renda para Ações com preço médio em Ruby !
 
