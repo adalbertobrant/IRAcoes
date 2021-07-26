@@ -1,4 +1,5 @@
 require 'date'
+require 'csv'
 require 'i18n'
 
 def calcData(stringData)
@@ -25,7 +26,7 @@ def inserir_acao()
     dataCompra = Date.strptime(dataCompra,'%d/%m/%Y')
     puts "Digite o custo da compra - Emolumentos + corretora"
     custoCompra = gets.to_f()
-    return { sigla: nome, valor: preco, quantidade: quantidade, dia: dataCompra, custos:custoCompra}
+    return { dia: dataCompra, sigla: nome, quantidade: quantidade, valor: preco, custos:custoCompra}
 end
 
 def lista_acao(acoes)
@@ -39,11 +40,25 @@ def lista_acao(acoes)
     end
 end
 
+def gravar_csv(acoes)
+    coluna = acoes.first.keys
+    arquivo = CSV.generate do |csv|
+        csv << coluna
+        acoes.each do |acao|
+            csv << acao.values
+        end
+    end
+    File.write('csv-gerado.csv',arquivo)
+    puts "Arquivo gerado com sucesso "
+    puts "Nome do arquivo é csv-gerado.csv e esta no diretório do programa"
+end
+
 def  menu()
     puts "================================================="
     puts "[ 1 ] Cadastrar nova Ação"
     puts "[ 2 ] Ver as Ações cadastradas"
-    puts "[ 3 ] Sair"
+    puts "[ 3 ] Gravar o arquivo CSV"
+    puts "[ 4 ] Sair"
     puts "================================================="
     print 'Digite a Opção  =>  '
     return gets.to_i
@@ -54,13 +69,15 @@ aux = '1'
 opcao = 0
 #mensagem de boas vindas
 bem_vindo()
-while ( opcao != 3 )do
+while ( opcao != 4 )do
     opcao = menu() 
     if ( opcao == 1 )
         acoes << inserir_acao()       
         puts "Ação digitada foi #{acoes[-1][:sigla]}"
     elsif ( opcao == 2)
         lista_acao(acoes)
+    elsif ( opcao == 3)
+        gravar_csv(acoes)
         end
 end
 
