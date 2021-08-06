@@ -34,7 +34,9 @@ def inserir_acao()
     quantidade = gets.to_i()    
     puts "Digite o custo da compra - Emolumentos + corretora"
     custoCompra = gets.to_f()
-    return { dia: dataCompra, sigla: nome, quantidade: quantidade, valor: preco, custos:custoCompra}
+    totalComprado = preco * quantidade
+    apaga_tela()
+    return { dia: dataCompra, sigla: nome, quantidade: quantidade, valor: preco, total: totalComprado, custos:custoCompra}
 end
 
 def lista_acao(acoes)
@@ -43,7 +45,7 @@ def lista_acao(acoes)
     acoes.each do |acao|
         puts "\t#{"DATA".ljust(10) } \t#{"SIGLA".ljust(10) } \t#{"QUANTIDADE".ljust(10) } \t#{"VALOR".ljust(10) } \t#{"TOTAL".ljust(10) } \t#{"CUSTOS".ljust(10) }"
         puts " "
-        puts "* \t#{ acao[:dia].to_s.ljust(10) } \t #{ acao[:sigla].to_s.ljust(10) } \t#{ acao[:quantidade].to_s.ljust(10) } \tR$ #{ acao[:valor].to_s.ljust(10) } \tR$ #{ acao[:quantidade].to_f * acao[:valor].to_f } \tR$ #{ acao[:custos] }"
+        puts "* \t#{ acao[:dia].to_s.ljust(10) } \t #{ acao[:sigla].to_s.ljust(10) } \t#{ acao[:quantidade].to_s.ljust(10) } \tR$ #{ acao[:valor].to_s.ljust(10) } \tR$ #{ acao[:total] } \tR$ #{ acao[:custos] }"
         puts " "
     end
 end
@@ -62,16 +64,31 @@ def gravar_csv(acoes)
 end
 
 def buscar_acao(acoes,nome_acao)
-    acoes.each do |acao|
+    if acoes.empty?
+        apaga_tela()
+        return puts "Erro - Necessário Cadastrar as Ações Primeiro."
+    end
+    preco_medio = 0
+    quantidade_acoes = 0
+    acoes.each do |acao|  
         if acao[:sigla] == nome_acao
             puts "* \t#{ acao[:dia].to_s.ljust(10) } \t #{ acao[:sigla].to_s.ljust(10) } \t#{ acao[:quantidade].to_s.ljust(10) } \tR$ #{ acao[:valor].to_s.ljust(10) } \tR$ #{ acao[:quantidade].to_f * acao[:valor].to_f } \tR$ #{ acao[:custos] }"
+            quantidade_acoes = acao[:quantidade] + quantidade_acoes
+            preco_medio = preco_medio + acao[:total]
         end
     end
+    puts "* \t Preço Médio para #{nome_acao} => R$ #{preco_medio / quantidade_acoes}"
 end
+
+def apaga_tela()
+    system("clear") || system("cls")
+end
+
+
 
 def  menu()
     puts "================================================="
-    puts "[ #{CADASTRAR_ACAO}] Cadastrar nova Ação"
+    puts "[ #{CADASTRAR_ACAO} ] Cadastrar nova Ação"
     puts "[ #{VER_ACOES} ] Ver Todas as Ações cadastradas"
     puts "[ #{BUSCAR_ACAO} ] Buscar Ação"
     puts "[ #{GRAVAR_CSV} ] Gravar o arquivo CSV"
