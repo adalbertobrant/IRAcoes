@@ -17,13 +17,13 @@ end
 def inserir_acao()
     puts "Digite a sigla da ação :"
     nome = gets.chomp()
-    puts "Digite o valor de compra da ação:"
-    preco  = gets.to_f()
-    puts "Digite a quantidade de ações comprada:"
-    quantidade = gets.to_i()
     puts "Digite a data de compra no formato: dia(xx)/mes(xx)/ano(xxxx)"
     dataCompra =gets.chomp()
     dataCompra = Date.strptime(dataCompra,'%d/%m/%Y')
+    puts "Digite o valor de compra da ação:"
+    preco  = gets.to_f()
+    puts "Digite a quantidade de ações comprada:"
+    quantidade = gets.to_i()    
     puts "Digite o custo da compra - Emolumentos + corretora"
     custoCompra = gets.to_f()
     return { dia: dataCompra, sigla: nome, quantidade: quantidade, valor: preco, custos:custoCompra}
@@ -78,7 +78,7 @@ while ( opcao != 4 )do
         lista_acao(acoes)
     elsif ( opcao == 3)
         gravar_csv(acoes)
-        end
+    end
 end
 
 puts "Programa encerrado"
