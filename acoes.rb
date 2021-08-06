@@ -2,6 +2,14 @@ require 'date'
 require 'csv'
 require 'i18n'
 
+# declaração de constantes para usar no menu
+
+CADASTRAR_ACAO = 1
+VER_ACOES = 2
+BUSCAR_ACAO = 3
+GRAVAR_CSV = 4
+SAIR = 5
+
 def calcData(stringData)
 end
 
@@ -53,12 +61,21 @@ def gravar_csv(acoes)
     puts "Nome do arquivo é csv-gerado.csv e esta no diretório do programa"
 end
 
+def buscar_acao(acoes,nome_acao)
+    acoes.each do |acao|
+        if acao[:sigla] == nome_acao
+            puts "* \t#{ acao[:dia].to_s.ljust(10) } \t #{ acao[:sigla].to_s.ljust(10) } \t#{ acao[:quantidade].to_s.ljust(10) } \tR$ #{ acao[:valor].to_s.ljust(10) } \tR$ #{ acao[:quantidade].to_f * acao[:valor].to_f } \tR$ #{ acao[:custos] }"
+        end
+    end
+end
+
 def  menu()
     puts "================================================="
-    puts "[ 1 ] Cadastrar nova Ação"
-    puts "[ 2 ] Ver as Ações cadastradas"
-    puts "[ 3 ] Gravar o arquivo CSV"
-    puts "[ 4 ] Sair"
+    puts "[ #{CADASTRAR_ACAO}] Cadastrar nova Ação"
+    puts "[ #{VER_ACOES} ] Ver Todas as Ações cadastradas"
+    puts "[ #{BUSCAR_ACAO} ] Buscar Ação"
+    puts "[ #{GRAVAR_CSV} ] Gravar o arquivo CSV"
+    puts "[ #{SAIR} ] Sair"
     puts "================================================="
     print 'Digite a Opção  =>  '
     return gets.to_i
@@ -69,14 +86,18 @@ aux = '1'
 opcao = 0
 #mensagem de boas vindas
 bem_vindo()
-while ( opcao != 4 )do
+while ( opcao != SAIR )do
     opcao = menu() 
-    if ( opcao == 1 )
+    if ( opcao == CADASTRAR_ACAO )
         acoes << inserir_acao()       
         puts "Ação digitada foi #{acoes[-1][:sigla]}"
-    elsif ( opcao == 2)
+    elsif ( opcao == VER_ACOES)
         lista_acao(acoes)
-    elsif ( opcao == 3)
+    elsif ( opcao == BUSCAR_ACAO)
+        puts "Entre a sigla da ação a ser buscada"
+        sigla = gets.chomp()
+        buscar_acao(acoes,sigla)
+    elsif ( opcao == GRAVAR_CSV)
         gravar_csv(acoes)
     end
 end
