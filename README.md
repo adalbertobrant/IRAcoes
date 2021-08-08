@@ -16,17 +16,11 @@ Para melhorar o conhecimento de programação e ajudar no pagamento das contas p
 
 ================XXXXXXXXXXXXXXXXX=====================
 
-
-
-![Imagem tela de abertura](https://github.com/adalbertobrant/IRAcoes/blob/main/imagens/telaAberturaOpcao1.png) ![Imagem Opção 1](https://github.com/adalbertobrant/IRAcoes/blob/main/imagens/Opcao1Selecionada.png)
-
-![Imagem Opção 2](https://github.com/adalbertobrant/IRAcoes/blob/main/imagens/Opcao2Selecionada.png) ![Imagem Opção 3](https://github.com/adalbertobrant/IRAcoes/blob/main/imagens/Opcao3Selecionada.png)
-
-![Imagem Opção 4](https://github.com/adalbertobrant/IRAcoes/blob/main/imagens/Opcao4Selecionada.png)
-
-
-
-
+|                        Telas Iniciais                        |                        Telas Iniciais                        |
+| :----------------------------------------------------------: | :----------------------------------------------------------: |
+| ![Imagem tela de abertura](https://github.com/adalbertobrant/IRAcoes/blob/main/imagens/telaAberturaOpcao1.png) | ![Imagem Opção 1](https://github.com/adalbertobrant/IRAcoes/blob/main/imagens/Opcao1Selecionada.png) |
+| ![Imagem Opção 2](https://github.com/adalbertobrant/IRAcoes/blob/main/imagens/Opcao2Selecionada.png) | ![Imagem Opção 3](https://github.com/adalbertobrant/IRAcoes/blob/main/imagens/Opcao3Selecionada.png) |
+| ![Imagem Opção 4](https://github.com/adalbertobrant/IRAcoes/blob/main/imagens/Opcao4Selecionada.png) |                                                              |
 
 ========================FEATURES NECESSÁRIAS ===========
 
