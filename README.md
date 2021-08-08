@@ -34,3 +34,4 @@ Para melhorar o conhecimento de programação e ajudar no pagamento das contas p
 
 5- PEGAR A COTAÇÃO DO ATIVO PARA CALCULAR O DARF VIA INTERNET.
 
+6- Usar hexapdf para lib  => https://hexapdf.gettalong.org/documentation/tutorials/modifying-a-pdf-document.html
