@@ -9,20 +9,18 @@ Para melhorar o conhecimento de programação e ajudar no pagamento das contas p
 ================INSTRUÇÕES DE USO ====================
 
 ​		1- Instalar o Ruby para Windows ou linux
+
 ​		2- rodar o programa no terminal 
+
 ​		3- ruby acoes.rb
 
 ================XXXXXXXXXXXXXXXXX=====================
 
 
 
-![Imagem tela de abertura](https://github.com/adalbertobrant/IRAcoes/blob/main/imagens/telaAberturaOpcao1.png)
+![Imagem tela de abertura](https://github.com/adalbertobrant/IRAcoes/blob/main/imagens/telaAberturaOpcao1.png) ![Imagem Opção 1](https://github.com/adalbertobrant/IRAcoes/blob/main/imagens/Opcao1Selecionada.png)
 
-![Imagem Opção 1](https://github.com/adalbertobrant/IRAcoes/blob/main/imagens/Opcao1Selecionada.png)
-
-![Imagem Opção 2](https://github.com/adalbertobrant/IRAcoes/blob/main/imagens/Opcao2Selecionada.png)
-
-![Imagem Opção 3](https://github.com/adalbertobrant/IRAcoes/blob/main/imagens/Opcao3Selecionada.png)
+![Imagem Opção 2](https://github.com/adalbertobrant/IRAcoes/blob/main/imagens/Opcao2Selecionada.png) ![Imagem Opção 3](https://github.com/adalbertobrant/IRAcoes/blob/main/imagens/Opcao3Selecionada.png)
 
 ![Imagem Opção 4](https://github.com/adalbertobrant/IRAcoes/blob/main/imagens/Opcao4Selecionada.png)
 
