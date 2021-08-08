@@ -16,7 +16,7 @@ Para melhorar o conhecimento de programação e ajudar no pagamento das contas p
 
 
 
-![Imagem tela de abertura](https://gthub.com/adalbertobrant/IRAcoes/blob/main/imagens/telaAberturaOpcao1.png)
+![Imagem tela de abertura](https://github.com/adalbertobrant/IRAcoes/blob/main/imagens/telaAberturaOpcao1.png)
 
 ![Imagem Opção 1](https://github.com/adalbertobrant/IRAcoes/blob/main/imagens/Opcao1Selecionada.png)
 
