@@ -51,6 +51,10 @@ def lista_acao(acoes)
 end
 
 def gravar_csv(acoes)
+    if acoes.empty?
+        apaga_tela()
+        return puts "Erro - Necessário Cadastrar as Ações Primeiro."
+    end
     coluna = acoes.first.keys
     arquivo = CSV.generate do |csv|
         csv << coluna
@@ -70,21 +74,29 @@ def buscar_acao(acoes,nome_acao)
     end
     preco_medio = 0
     quantidade_acoes = 0
+    dtCompra = "Data Compra"
+    simbolo = "Sigla"
+    qtx = "Quantidade"
+    preco = "Valor"
+    tt = "Total"
+    cost = "Custos"
+
+    puts "\t#{dtCompra.ljust(10)} \t #{simbolo.ljust(10)} \t #{qtx.ljust(10)} \t #{preco.ljust(10)} \t #{tt.ljust(10)} \t #{cost.ljust(10)}"
+    puts ""
     acoes.each do |acao|  
-        if acao[:sigla] == nome_acao
+        if acao[:sigla] == nome_acao            
             puts "* \t#{ acao[:dia].to_s.ljust(10) } \t #{ acao[:sigla].to_s.ljust(10) } \t#{ acao[:quantidade].to_s.ljust(10) } \tR$ #{ acao[:valor].to_s.ljust(10) } \tR$ #{ acao[:quantidade].to_f * acao[:valor].to_f } \tR$ #{ acao[:custos] }"
             quantidade_acoes = acao[:quantidade] + quantidade_acoes
             preco_medio = preco_medio + acao[:total]
         end
     end
+    puts " "
     puts "* \t Preço Médio para #{nome_acao} => R$ #{preco_medio / quantidade_acoes}"
 end
 
 def apaga_tela()
     system("clear") || system("cls")
 end
-
-
 
 def  menu()
     puts "================================================="
@@ -106,9 +118,8 @@ bem_vindo()
 while ( opcao != SAIR )do
     opcao = menu() 
     if ( opcao == CADASTRAR_ACAO )
-        acoes << inserir_acao()       
-        puts "Ação digitada foi #{acoes[-1][:sigla]}"
-    elsif ( opcao == VER_ACOES)
+        acoes << inserir_acao()
+    elsif( opcao == VER_ACOES)
         lista_acao(acoes)
     elsif ( opcao == BUSCAR_ACAO)
         puts "Entre a sigla da ação a ser buscada"
@@ -118,5 +129,6 @@ while ( opcao != SAIR )do
         gravar_csv(acoes)
     end
 end
+apaga_tela()
 
 puts "Programa encerrado"
