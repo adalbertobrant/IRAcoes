@@ -4,6 +4,7 @@ require 'i18n'
 
 # declaração de constantes para usar no menu
 
+DADOS_USUARIO = 0
 CADASTRAR_ACAO = 1
 VER_ACOES = 2
 BUSCAR_ACAO = 3
@@ -11,6 +12,14 @@ GRAVAR_CSV = 4
 SAIR = 5
 
 def calcData(stringData)
+end
+
+def inserir_dados_usuario()
+    puts "Nome Completo => "
+    nome = gets.chomp()
+    puts "C.P.F => "
+    cpf = gets.chomp()
+    return {nome: nome, cpf: cpf}
 end
 
 def  bem_vindo()
@@ -36,6 +45,18 @@ def inserir_acao()
     custoCompra = gets.to_f()
     totalComprado = preco * quantidade
     apaga_tela()
+    puts "Dados digitados foram "
+    puts " "
+    puts "Data de Compra #{dataCompra} Sigla #{nome} Quantidade #{quantidade} Preço #{preco} Custo #{custoCompra}"
+    puts " "
+    puts "Verifique as informações. Se estiverem corretas aperte S para sim e N para não =>  "
+    sim = gets.chomp()
+    if sim === 's' || sim == 'S'
+        puts "Salvando os dados"
+    else  
+        puts "Insira os dados corretos"
+        inserir_acao
+    end
     return { dia: dataCompra, sigla: nome, quantidade: quantidade, valor: preco, total: totalComprado, custos:custoCompra}
 end
 
@@ -100,6 +121,7 @@ end
 
 def  menu()
     puts "================================================="
+    puts "[ #{DADOS_USUARIO} ] Dados do Usuário"
     puts "[ #{CADASTRAR_ACAO} ] Cadastrar nova Ação"
     puts "[ #{VER_ACOES} ] Ver Todas as Ações cadastradas"
     puts "[ #{BUSCAR_ACAO} ] Buscar Ação"
@@ -110,6 +132,7 @@ def  menu()
     return gets.to_i
 end
 
+comprador = {}
 acoes  =  [ ]
 aux = '1'
 opcao = 0
@@ -117,7 +140,9 @@ opcao = 0
 bem_vindo()
 while ( opcao != SAIR )do
     opcao = menu() 
-    if ( opcao == CADASTRAR_ACAO )
+    if ( opcao == DADOS_USUARIO )
+        comprador.merge(inserir_dados_usuario)
+    elsif ( opcao == CADASTRAR_ACAO )
         acoes << inserir_acao()
     elsif( opcao == VER_ACOES)
         lista_acao(acoes)
