@@ -1,3 +1,6 @@
+
+require_relative "stocks"
+
 class Conta 
   attr_reader :titular,:cpf
   attr_accessor :acoes
@@ -8,9 +11,7 @@ class Conta
     @acoes = Array.new([])
   end
 
-  def cadastrarAcoes(params = {})
-    
-    self.acoes << params
-  
+  def cadastrarAcao(params = {})
+    self.acoes << params  
   end
 end
