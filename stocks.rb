@@ -2,7 +2,7 @@ require 'date'
 class Stocks
   attr_accessor :nome, :dataCompra, :preco, :quantidade, :custoCompra, :totalComprado
 
-  def initialize()
+  def initialize(nome,dataCompra,preco,quantidade,custoCompra,totalComprado)
     @nome = nome
     @dataCompra = dataCompra
     @preco = preco
@@ -36,6 +36,8 @@ class Stocks
         puts "Insira os dados corretos"
         inserir_acao
     end
-    return { dia: self.dataCompra, sigla: self.nome, quantidade: self.quantidade, valor: self.preco, total: self.totalComprado, custos:self.custoCompra}
+    #return { dia: self.dataCompra, sigla: self.nome, quantidade: self.quantidade, valor: self.preco, total: self.totalComprado, custos:self.custoCompra}
   end
 end
+
+#https://stackoverflow.com/questions/14532844/ruby-array-of-objects-classes
