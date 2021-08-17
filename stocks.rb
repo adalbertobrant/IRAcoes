@@ -36,7 +36,14 @@ class Stocks
         puts "Insira os dados corretos"
         inserir_acao
     end
-    #return { dia: self.dataCompra, sigla: self.nome, quantidade: self.quantidade, valor: self.preco, total: self.totalComprado, custos:self.custoCompra}
+    # retorna um hash para acessar deve conta.acoes[0][:sigla]
+    #return { dia: self.dataCompra, sigla: self.nome, quantidade: self.quantidade, valor: self.preco, total: self.totalComprado, custos:self.custoCompra }
+  end
+
+  def apagar_acao()
+    puts "Digite a sigla da ação :"
+    self.nome = gets.chomp()
+    puts "Acão #{self.nome} apagada"  
   end
 end
 
