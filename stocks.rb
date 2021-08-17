@@ -2,7 +2,7 @@ require 'date'
 class Stocks
   attr_accessor :nome, :dataCompra, :preco, :quantidade, :custoCompra, :totalComprado
 
-  def initialize(nome,dataCompra,preco,quantidade,custoCompra,totalComprado)
+  def initialize()
     @nome = nome
     @dataCompra = dataCompra
     @preco = preco
