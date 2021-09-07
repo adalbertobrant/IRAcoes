@@ -68,12 +68,14 @@ end
 def lista_acao(acoes)
     puts "Lista de ações cadastradas" 
     puts " "
-    acoes.each do |acao|
-        puts "\t#{"DATA".ljust(10) } \t#{"SIGLA".ljust(10) } \t#{"QUANTIDADE".ljust(10) } \t#{"VALOR COMPRA".ljust(10) } \t#{"PREÇO ATUAL".ljust(10)} \t#{"TOTAL".ljust(10) } \t#{"CUSTOS".ljust(10) }"
-        puts " "
+    acoes.each do |acao|       
         if acao[:fechamento] > acao[:valor]
+            puts "\t#{"DATA".ljust(10) } \t#{"SIGLA".ljust(10) } \t#{"QUANTIDADE".ljust(10) } \t#{"VALOR COMPRA".ljust(10) } \t#{"PREÇO ATUAL".ljust(10).green} \t#{"TOTAL".ljust(10) } \t#{"CUSTOS".ljust(10) }"
+            puts " "
             puts "* \t#{ acao[:dia].to_s.ljust(10) } \t #{ acao[:sigla].to_s.ljust(10) } \t#{ acao[:quantidade].to_s.ljust(10) } \tR$ #{ acao[:valor].to_s.ljust(10) } \tR$ #{ acao[:fechamento].to_s.ljust(10).green } \tR$ #{ acao[:total] } \tR$ #{ acao[:custos] }"
         elsif acao[:fechamento] < acao[:valor]
+            puts "\t#{"DATA".ljust(10) } \t#{"SIGLA".ljust(10) } \t#{"QUANTIDADE".ljust(10) } \t#{"VALOR COMPRA".ljust(10) } \t#{"PREÇO ATUAL".ljust(10).red} \t#{"TOTAL".ljust(10) } \t#{"CUSTOS".ljust(10) }"
+            puts " "
             puts "* \t#{ acao[:dia].to_s.ljust(10) } \t #{ acao[:sigla].to_s.ljust(10) } \t#{ acao[:quantidade].to_s.ljust(10) } \tR$ #{ acao[:valor].to_s.ljust(10) } \tR$ #{ acao[:fechamento].to_s.ljust(10).red } \tR$ #{ acao[:total] } \tR$ #{ acao[:custos] }"
             
         end
