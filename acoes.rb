@@ -1,6 +1,10 @@
 require 'date'
 require 'csv'
 require 'i18n'
+require 'nokogiri'
+require 'restclient'
+require 'json'
+require 'colorize'
 
 # declaração de constantes para usar no menu
 
@@ -44,6 +48,7 @@ def inserir_acao()
     puts "Digite o custo da compra - Emolumentos + corretora"
     custoCompra = gets.to_f()
     totalComprado = preco * quantidade
+    precoAtual = preco_fechamento(nome)
     apaga_tela()
     puts "Dados digitados foram "
     puts " "
@@ -57,16 +62,22 @@ def inserir_acao()
         puts "Insira os dados corretos"
         inserir_acao
     end
-    return { dia: dataCompra, sigla: nome, quantidade: quantidade, valor: preco, total: totalComprado, custos:custoCompra}
+    return { dia: dataCompra, sigla: nome, quantidade: quantidade, valor: preco, fechamento: precoAtual, total: totalComprado, custos:custoCompra }
 end
 
 def lista_acao(acoes)
     puts "Lista de ações cadastradas" 
     puts " "
     acoes.each do |acao|
-        puts "\t#{"DATA".ljust(10) } \t#{"SIGLA".ljust(10) } \t#{"QUANTIDADE".ljust(10) } \t#{"VALOR".ljust(10) } \t#{"TOTAL".ljust(10) } \t#{"CUSTOS".ljust(10) }"
+        puts "\t#{"DATA".ljust(10) } \t#{"SIGLA".ljust(10) } \t#{"QUANTIDADE".ljust(10) } \t#{"VALOR COMPRA".ljust(10) } \t#{"PREÇO ATUAL".ljust(10)} \t#{"TOTAL".ljust(10) } \t#{"CUSTOS".ljust(10) }"
         puts " "
-        puts "* \t#{ acao[:dia].to_s.ljust(10) } \t #{ acao[:sigla].to_s.ljust(10) } \t#{ acao[:quantidade].to_s.ljust(10) } \tR$ #{ acao[:valor].to_s.ljust(10) } \tR$ #{ acao[:total] } \tR$ #{ acao[:custos] }"
+        if acao[:fechamento] > acao[:valor]
+            puts "* \t#{ acao[:dia].to_s.ljust(10) } \t #{ acao[:sigla].to_s.ljust(10) } \t#{ acao[:quantidade].to_s.ljust(10) } \tR$ #{ acao[:valor].to_s.ljust(10) } \tR$ #{ acao[:fechamento].to_s.ljust(10).green } \tR$ #{ acao[:total] } \tR$ #{ acao[:custos] }"
+        elsif acao[:fechamento] < acao[:valor]
+            puts "* \t#{ acao[:dia].to_s.ljust(10) } \t #{ acao[:sigla].to_s.ljust(10) } \t#{ acao[:quantidade].to_s.ljust(10) } \tR$ #{ acao[:valor].to_s.ljust(10) } \tR$ #{ acao[:fechamento].to_s.ljust(10).red } \tR$ #{ acao[:total] } \tR$ #{ acao[:custos] }"
+            
+        end
+        
         puts " "
     end
 end
@@ -113,6 +124,17 @@ def buscar_acao(acoes,nome_acao)
     end
     puts " "
     puts "* \t Preço Médio para #{nome_acao} => R$ #{preco_medio / quantidade_acoes}"
+end
+
+def preco_fechamento(sigla)
+# pega a sigla e devolve o valor atual pelo google finance
+url = "https://www.google.com/finance/quote/#{sigla}:BVMF"
+    response = Nokogiri::HTML(RestClient.get(url))
+    fechamento = response.css('.kf1m0').css('.kf1m0').first.text
+    fechamento.slice!("R$")
+    valor = fechamento.to_f  
+    puts valor
+    return valor
 end
 
 def apaga_tela()

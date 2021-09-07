@@ -1,3 +1,6 @@
+require 'nokogiri'
+require 'restclient'
+require 'json'
 
 require_relative "stocks"
 
@@ -11,7 +14,24 @@ class Conta
     @acoes = Array.new([])
   end
 
-  def cadastrarAcao(params = {})
+  def cadastrarAcao(params)
     self.acoes << params  
   end
+
+  def closePriceGatherDataGoogleFinance()
+    arraySiglas = self.acoes.map{ |x| x.nome }
+    valores = arraySiglas.map{ |nome| 
+      puts nome
+      url = "https://www.google.com/finance/quote/#{nome}:BVMF"
+      response = Nokogiri::HTML(RestClient.get(url))
+      fechamento = response.css('.kf1m0').css('.kf1m0').first.text
+      fechamento.slice!("R$")
+      valor = fechamento.to_f  
+      valor
+    }
+    precoFechamento = Hash[arraySiglas.zip valores]    
+
+  end
+
+
 end

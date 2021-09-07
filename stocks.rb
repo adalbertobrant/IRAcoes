@@ -1,11 +1,9 @@
 require 'date'
 
-
-
 class Stocks 
   attr_accessor :nome, :dataCompra, :preco, :quantidade, :custoCompra
 
-  def initialize(nome,dataCompra,preco,quantidade,custoCompra)
+  def initialize(nome,dataCompra,preco,quantidade,custoCompra)  
     @nome = nome
     @dataCompra = dataCompra
     @preco = preco
@@ -14,7 +12,9 @@ class Stocks
     @totalComprado = quantidade * preco
   end
 
- # def inserir_acao()
+
+
+  def inserir_acao()
     puts "Digite a sigla da ação :"
     self.nome = gets.chomp()
     puts "Digite a data de compra no formato: dia(xx)/mes(xx)/ano(xxxx)"
@@ -40,8 +40,8 @@ class Stocks
         inserir_acao
     end
     # retorna um hash para acessar deve conta.acoes[0][:sigla]
-    #return { dia: self.dataCompra, sigla: self.nome, quantidade: self.quantidade, valor: self.preco, total: self.totalComprado, custos:self.custoCompra }
-  #end
+    return { dia: self.dataCompra, sigla: self.nome, quantidade: self.quantidade, valor: self.preco, total: self.totalComprado, custos:self.custoCompra }
+  end
 
 
 end
