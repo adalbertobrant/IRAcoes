@@ -49,6 +49,7 @@ def inserir_acao()
     custoCompra = gets.to_f()
     totalComprado = preco * quantidade
     precoAtual = preco_fechamento(nome)
+    crescimento = ((precoAtual * quantidade - custoCompra - totalComprado) / totalComprado) * 100
     apaga_tela()
     puts "Dados digitados foram "
     puts " "
@@ -62,7 +63,7 @@ def inserir_acao()
         puts "Insira os dados corretos"
         inserir_acao
     end
-    return { dia: dataCompra, sigla: nome, quantidade: quantidade, valor: preco, fechamento: precoAtual, total: totalComprado, custos:custoCompra }
+    return { dia: dataCompra, sigla: nome, quantidade: quantidade, valor: preco, fechamento: precoAtual, total: totalComprado, custos:custoCompra, crescimento: crescimento }
 end
 
 def lista_acao(acoes)
@@ -73,10 +74,14 @@ def lista_acao(acoes)
             puts "\t#{"DATA".ljust(10) } \t#{"SIGLA".ljust(10) } \t#{"QUANTIDADE".ljust(10) } \t#{"VALOR COMPRA".ljust(10) } \t#{"PREÇO ATUAL".ljust(10).green} \t#{"TOTAL".ljust(10) } \t#{"CUSTOS".ljust(10) }"
             puts " "
             puts "* \t#{ acao[:dia].to_s.ljust(10) } \t #{ acao[:sigla].to_s.ljust(10) } \t#{ acao[:quantidade].to_s.ljust(10) } \tR$ #{ acao[:valor].to_s.ljust(10) } \tR$ #{ acao[:fechamento].to_s.ljust(10).green } \tR$ #{ acao[:total] } \tR$ #{ acao[:custos] }"
+            puts " "
+            puts "\t#{"CRESCIMENTO".ljust(10).green} => #{ acao[:crescimento].to_s.ljust(10).green }#{"%".green}"
         elsif acao[:fechamento] < acao[:valor]
             puts "\t#{"DATA".ljust(10) } \t#{"SIGLA".ljust(10) } \t#{"QUANTIDADE".ljust(10) } \t#{"VALOR COMPRA".ljust(10) } \t#{"PREÇO ATUAL".ljust(10).red} \t#{"TOTAL".ljust(10) } \t#{"CUSTOS".ljust(10) }"
             puts " "
             puts "* \t#{ acao[:dia].to_s.ljust(10) } \t #{ acao[:sigla].to_s.ljust(10) } \t#{ acao[:quantidade].to_s.ljust(10) } \tR$ #{ acao[:valor].to_s.ljust(10) } \tR$ #{ acao[:fechamento].to_s.ljust(10).red } \tR$ #{ acao[:total] } \tR$ #{ acao[:custos] }"
+            puts " "
+            puts "\t#{"CRESCIMENTO".ljust(10).red} => #{ acao[:crescimento].to_s.ljust(10).red }#{"%".red}"
             
         end
         
