@@ -10,10 +10,11 @@ require 'colorize'
 
 DADOS_USUARIO = 0
 CADASTRAR_ACAO = 1
-VER_ACOES = 2
-BUSCAR_ACAO = 3
-GRAVAR_CSV = 4
-SAIR = 5
+APAGAR_CARTEIRA = 2
+VER_ACOES = 3
+BUSCAR_ACAO = 4
+GRAVAR_CSV = 5
+SAIR = 6
 
 def calcData(stringData)
 end
@@ -66,24 +67,67 @@ def inserir_acao()
     return { dia: dataCompra, sigla: nome, quantidade: quantidade, valor: preco, fechamento: precoAtual, total: totalComprado, custos:custoCompra, crescimento: crescimento }
 end
 
+def apagar_carteira(acoes)
+    puts "Escreva o número a ação ou T para apagar toda a carteira" 
+    puts " "
+    contador = 1
+    acoes.each do |acao|   
+
+            puts "\t#{"DATA".ljust(10) } \t#{"SIGLA".ljust(10) } \t#{"QUANTIDADE".ljust(10) } \t#{"VALOR COMPRA".ljust(10) } \t#{"PREÇO ATUAL".ljust(10).green} \t#{"TOTAL".ljust(10) } \t#{"CUSTOS".ljust(10) }"
+            puts " "
+            print contador.to_s.yellow
+            puts "* \t#{ acao[:dia].to_s.ljust(10) } \t #{ acao[:sigla].to_s.ljust(10) } \t#{ acao[:quantidade].to_s.ljust(10) } \tR$ #{ acao[:valor].to_s.ljust(10) } \tR$ #{ acao[:fechamento].to_s.ljust(10).green } \tR$ #{ acao[:total] } \tR$ #{ acao[:custos] }"            
+            contador +=1
+        
+        puts " "
+    end
+    print "Digite sua escolha => " 
+    escolha = gets.chomp()
+    if escolha == 't' || escolha == 'T'
+        coluna = acoes.first.keys
+        arquivo = CSV.generate do |csv|
+            csv << coluna
+            acoes.each do |acao|
+                csv << acao.values
+            end
+        end
+        File.write('acoes_antigas_apagadas',arquivo)
+        return acoes.clear
+   
+    elsif escolha.to_i.is_a? Numeric
+        escolha = escolha.to_i
+        puts "Apagando => #{acoes[escolha-1]} "        
+        escolha = escolha - 1
+        acoes.delete_at(escolha)
+        return acoes
+        
+    end
+
+end
+
 def lista_acao(acoes)
     puts "Lista de ações cadastradas" 
     puts " "
-    acoes.each do |acao|       
+    contador = 1
+    acoes.each do |acao|
+        
         if acao[:fechamento] > acao[:valor]
             puts "\t#{"DATA".ljust(10) } \t#{"SIGLA".ljust(10) } \t#{"QUANTIDADE".ljust(10) } \t#{"VALOR COMPRA".ljust(10) } \t#{"PREÇO ATUAL".ljust(10).green} \t#{"TOTAL".ljust(10) } \t#{"CUSTOS".ljust(10) }"
             puts " "
+            print contador.to_s.yellow
             puts "* \t#{ acao[:dia].to_s.ljust(10) } \t #{ acao[:sigla].to_s.ljust(10) } \t#{ acao[:quantidade].to_s.ljust(10) } \tR$ #{ acao[:valor].to_s.ljust(10) } \tR$ #{ acao[:fechamento].to_s.ljust(10).green } \tR$ #{ acao[:total] } \tR$ #{ acao[:custos] }"
             puts " "
             puts "\t#{"CRESCIMENTO".ljust(10).green} => #{ acao[:crescimento].to_s.ljust(10).green }#{"%".green}"
         elsif acao[:fechamento] < acao[:valor]
             puts "\t#{"DATA".ljust(10) } \t#{"SIGLA".ljust(10) } \t#{"QUANTIDADE".ljust(10) } \t#{"VALOR COMPRA".ljust(10) } \t#{"PREÇO ATUAL".ljust(10).red} \t#{"TOTAL".ljust(10) } \t#{"CUSTOS".ljust(10) }"
             puts " "
+            print contador.to_s.yellow
             puts "* \t#{ acao[:dia].to_s.ljust(10) } \t #{ acao[:sigla].to_s.ljust(10) } \t#{ acao[:quantidade].to_s.ljust(10) } \tR$ #{ acao[:valor].to_s.ljust(10) } \tR$ #{ acao[:fechamento].to_s.ljust(10).red } \tR$ #{ acao[:total] } \tR$ #{ acao[:custos] }"
             puts " "
             puts "\t#{"CRESCIMENTO".ljust(10).red} => #{ acao[:crescimento].to_s.ljust(10).red }#{"%".red}"
             
         end
+        contador +=1
         
         puts " "
     end
@@ -135,7 +179,7 @@ end
 
 def preco_fechamento(sigla)
 # pega a sigla e devolve o valor atual pelo google finance
-url = "https://www.google.com/finance/quote/#{sigla}:BVMF"
+    url = "https://www.google.com/finance/quote/#{sigla}:BVMF"
     response = Nokogiri::HTML(RestClient.get(url))
     fechamento = response.css('.kf1m0').css('.kf1m0').first.text
     fechamento.slice!("R$")
@@ -152,6 +196,7 @@ def  menu()
     puts "================================================="
     puts "[ #{DADOS_USUARIO} ] Dados do Usuário"
     puts "[ #{CADASTRAR_ACAO} ] Cadastrar nova Ação"
+    puts "[ #{APAGAR_CARTEIRA} ] Apagar Carteira"
     puts "[ #{VER_ACOES} ] Ver Todas as Ações cadastradas"
     puts "[ #{BUSCAR_ACAO} ] Buscar Ação"
     puts "[ #{GRAVAR_CSV} ] Gravar o arquivo CSV"
@@ -173,6 +218,8 @@ while ( opcao != SAIR )do
         comprador.merge(inserir_dados_usuario)
     elsif ( opcao == CADASTRAR_ACAO )
         acoes << inserir_acao()
+    elsif ( opcao == APAGAR_CARTEIRA )
+        apagar_carteira(acoes)
     elsif( opcao == VER_ACOES)
         lista_acao(acoes)
     elsif ( opcao == BUSCAR_ACAO)
