@@ -91,13 +91,34 @@ def apagar_carteira(acoes)
                 csv << acao.values
             end
         end
-        File.write('acoes_antigas_apagadas',arquivo)
+        dia_apagado = Time.now
+        #File.write('acoes_antigas_apagadas.txt', dia_apagado, mode: "a")
+        open("acoes_apagadas.txt","a"){ |f|
+            f << dia_apagado.to_s+"\n"
+            f << "====================\n"
+            f << arquivo
+            f << "====================\n"
+            
+         }
+        File.write('acoes_antigas_apagadas.txt', arquivo)
+        puts "Todas as ações cadastradas foram apagadas com sucesso #{dia_apagado}"
         return acoes.clear
    
     elsif escolha.to_i.is_a? Numeric
         escolha = escolha.to_i
         puts "Apagando => #{acoes[escolha-1]} "        
         escolha = escolha - 1
+        dia_apagado = Time.now
+        open("acoes_apagadas.txt","a"){ |f|
+            f << "\nData e Hora em que foi apagada a ação \n"
+            f << "\n\t"+dia_apagado.to_s+"\n\n"
+            f << "** === Ação Única Apagada ===\n\n"
+            f << "\t"+acoes[escolha].to_s
+            f << "\n\n xxxx-----------xxxx\n\n"
+            
+         }
+
+        puts "Ação apagada com sucesso e registrada no arquivo de log"
         acoes.delete_at(escolha)
         return acoes
         
@@ -145,7 +166,7 @@ def gravar_csv(acoes)
             csv << acao.values
         end
     end
-    File.write('csv-gerado.csv',arquivo)
+    File.write('csv-gerado.csv',arquivo,mode: "a")
     puts "Arquivo gerado com sucesso "
     puts "Nome do arquivo é csv-gerado.csv e esta no diretório do programa"
 end
@@ -195,8 +216,8 @@ end
 def  menu()
     puts "================================================="
     puts "[ #{DADOS_USUARIO} ] Dados do Usuário"
-    puts "[ #{CADASTRAR_ACAO} ] Cadastrar nova Ação"
-    puts "[ #{APAGAR_CARTEIRA} ] Apagar Carteira"
+    puts "[ #{CADASTRAR_ACAO} ] Cadastrar nova Ação ou Carteira"
+    puts "[ #{APAGAR_CARTEIRA} ] Apagar Carteira ou Ação"
     puts "[ #{VER_ACOES} ] Ver Todas as Ações cadastradas"
     puts "[ #{BUSCAR_ACAO} ] Buscar Ação"
     puts "[ #{GRAVAR_CSV} ] Gravar o arquivo CSV"
