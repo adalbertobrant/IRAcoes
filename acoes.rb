@@ -42,6 +42,11 @@ def inserir_acao()
     puts "Digite a data de compra no formato: dia(xx)/mes(xx)/ano(xxxx)"
     dataCompra =gets.chomp()
     dataCompra = Date.strptime(dataCompra,'%d/%m/%Y')
+    # calculo de dias holdando
+    dataAtual = Date.today
+    dataHolder = dataAtual - dataCompra
+    dataHolder = dataHolder.to_i
+    # final do cálculo
     puts "Digite o valor de compra da ação:"
     preco  = gets.to_f()
     puts "Digite a quantidade de ações comprada:"
@@ -64,7 +69,7 @@ def inserir_acao()
         puts "Insira os dados corretos"
         inserir_acao
     end
-    return { dia: dataCompra, sigla: nome, quantidade: quantidade, valor: preco, fechamento: precoAtual, total: totalComprado, custos:custoCompra, crescimento: crescimento }
+    return { dia: dataCompra, sigla: nome, quantidade: quantidade, valor: preco, fechamento: precoAtual, total: totalComprado, custos:custoCompra, crescimento: crescimento, dataHolder: dataHolder }
 end
 
 def apagar_carteira(acoes)
@@ -133,17 +138,17 @@ def lista_acao(acoes)
     acoes.each do |acao|
         
         if acao[:fechamento] > acao[:valor]
-            puts "\t#{"DATA".ljust(10) } \t#{"SIGLA".ljust(10) } \t#{"QUANTIDADE".ljust(10) } \t#{"VALOR COMPRA".ljust(10) } \t#{"PREÇO ATUAL".ljust(10).green} \t#{"TOTAL".ljust(10) } \t#{"CUSTOS".ljust(10) }"
+            puts "\t#{"DATA".ljust(10) } \t#{"SIGLA".ljust(10) } \t#{"QUANTIDADE".ljust(10) } \t#{"VALOR COMPRA".ljust(10) } \t#{"PREÇO ATUAL".ljust(10).green} \t#{"TOTAL".ljust(10) } \t#{"CUSTOS".ljust(10) } \t#{"DIAS HOLDADOS".ljust(10) }"
             puts " "
             print contador.to_s.yellow
-            puts "* \t#{ acao[:dia].to_s.ljust(10) } \t #{ acao[:sigla].to_s.ljust(10) } \t#{ acao[:quantidade].to_s.ljust(10) } \tR$ #{ acao[:valor].to_s.ljust(10) } \tR$ #{ acao[:fechamento].to_s.ljust(10).green } \tR$ #{ acao[:total] } \tR$ #{ acao[:custos] }"
+            puts "* \t#{ acao[:dia].to_s.ljust(10) } \t #{ acao[:sigla].to_s.ljust(10) } \t#{ acao[:quantidade].to_s.ljust(10) } \tR$ #{ acao[:valor].to_s.ljust(10) } \tR$ #{ acao[:fechamento].to_s.ljust(10).green } \tR$ #{ acao[:total] } \tR$ #{ acao[:custos] } \t\t Dias #{acao[:dataHolder] }"
             puts " "
             puts "\t#{"CRESCIMENTO".ljust(10).green} => #{ acao[:crescimento].to_s.ljust(10).green }#{"%".green}"
         elsif acao[:fechamento] < acao[:valor]
-            puts "\t#{"DATA".ljust(10) } \t#{"SIGLA".ljust(10) } \t#{"QUANTIDADE".ljust(10) } \t#{"VALOR COMPRA".ljust(10) } \t#{"PREÇO ATUAL".ljust(10).red} \t#{"TOTAL".ljust(10) } \t#{"CUSTOS".ljust(10) }"
+            puts "\t#{"DATA".ljust(10) } \t#{"SIGLA".ljust(10) } \t#{"QUANTIDADE".ljust(10) } \t#{"VALOR COMPRA".ljust(10) } \t#{"PREÇO ATUAL".ljust(10).red} \t#{"TOTAL".ljust(10) } \t#{"CUSTOS".ljust(10) } \t#{"DIAS HOLDADOS".ljust(10) }"
             puts " "
             print contador.to_s.yellow
-            puts "* \t#{ acao[:dia].to_s.ljust(10) } \t #{ acao[:sigla].to_s.ljust(10) } \t#{ acao[:quantidade].to_s.ljust(10) } \tR$ #{ acao[:valor].to_s.ljust(10) } \tR$ #{ acao[:fechamento].to_s.ljust(10).red } \tR$ #{ acao[:total] } \tR$ #{ acao[:custos] }"
+            puts "* \t#{ acao[:dia].to_s.ljust(10) } \t #{ acao[:sigla].to_s.ljust(10) } \t#{ acao[:quantidade].to_s.ljust(10) } \tR$ #{ acao[:valor].to_s.ljust(10) } \tR$ #{ acao[:fechamento].to_s.ljust(10).red } \tR$ #{ acao[:total] } \tR$ #{ acao[:custos] } \t\t Dias #{acao[:dataHolder] }"
             puts " "
             puts "\t#{"CRESCIMENTO".ljust(10).red} => #{ acao[:crescimento].to_s.ljust(10).red }#{"%".red}"
             
