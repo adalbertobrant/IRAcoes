@@ -10,6 +10,7 @@ class Stocks
     @quantidade = quantidade
     @custoCompra = custoCompra
     @totalComprado = quantidade * preco
+    @precoFechamento
   end
 
 
@@ -42,6 +43,9 @@ class Stocks
     # retorna um hash para acessar deve conta.acoes[0][:sigla]
     return { dia: self.dataCompra, sigla: self.nome, quantidade: self.quantidade, valor: self.preco, total: self.totalComprado, custos:self.custoCompra }
   end
+
+
+
 
 
 end
