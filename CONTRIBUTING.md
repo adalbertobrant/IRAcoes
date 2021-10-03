@@ -76,6 +76,8 @@ The all first timers must contribute writing down this mini biopic
 
 How to be assigned for a task and the time to complete the task.
 
+0- Clone and Fork this repo and do the pull request, remember to give stars
+
 1- You should go to the issues section in this repo -> [ISSUES](https://github.com/adalbertobrant/IRAcoes/issues)
 
 2- Then choose the issue you want to tackle in 
