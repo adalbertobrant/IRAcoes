@@ -78,15 +78,13 @@ How to be assigned for a task and the time to complete the task.
 
 1- You should go to the issues section in this repo -> [ISSUES](https://github.com/adalbertobrant/IRAcoes/issues)
 
-[]: 
-
 2- Then choose the issue you want to tackle in 
 
 3- After that you have 3 days to complete the issue and make a valid pull request.
 
 4- All the pull request will be accepted if they are following the guidelines from this website -> [RULES HACKTOBERFEST](https://hacktoberfest.digitalocean.com/resources/participation)
 
-[]: 
+
 
 
 
