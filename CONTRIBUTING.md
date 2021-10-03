@@ -84,7 +84,7 @@ How to be assigned for a task and the time to complete the task.
 
 3- After that you have 3 days to complete the issue and make a valid pull request.
 
-4- All the pull request will be accepted if they are following the guidelines from this website -> [](https://hacktoberfest.digitalocean.com/resources/participation)
+4- All the pull request will be accepted if they are following the guidelines from this website -> [RULES HACKTOBERFEST](https://hacktoberfest.digitalocean.com/resources/participation)
 
 []: 
 
