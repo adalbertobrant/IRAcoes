@@ -234,7 +234,7 @@ end
 
 comprador = {}
 acoes  =  [ ]
-aux = '1'
+# aux = '1'
 opcao = 0
 #mensagem de boas vindas
 bem_vindo()
