@@ -63,7 +63,7 @@ def inserir_acao()
     puts " "
     puts "Verifique as informações. Se estiverem corretas aperte S para sim e N para não =>  "
     sim = gets.chomp()
-    if sim === 's' || sim == 'S'
+    if sim == 's' || sim == 'S'
         puts "Salvando os dados"
     else  
         puts "Insira os dados corretos"
