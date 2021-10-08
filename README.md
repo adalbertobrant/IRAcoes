@@ -38,6 +38,7 @@ Para melhorar o conhecimento de programação e ajudar no pagamento das contas p
 
 
 ======================== CONSULTA DE AÇÕES ===========
+
 A consulta das ações é feita no [google finance](https://www.google.com/finance/), onde é possível verificar as siglas.
 
 
