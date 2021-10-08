@@ -50,6 +50,7 @@ docker build . -t acoes:1.0.0
 
 
 ======================== EXECUTANDO IMAGEM DOCKER ===========
+
 O detalhe para o volume que é a pasta onde o arquivo csv será gerado
 ``
 docker run -it --volume=<path_to_project>/dados:/usr/src/app/dados acoes:1.0.0
