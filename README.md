@@ -48,5 +48,5 @@ docker build . -t acoes:1.0.0
 ======================== EXECUTANDO IMAGEM DOCKER ===========
 
 ``
-docker run -it acoes:1.0.0
+docker run -it --volume=./dados:/usr/src/app/dados acoes:1.0.0
 ``

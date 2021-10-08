@@ -171,7 +171,7 @@ def gravar_csv(acoes)
             csv << acao.values
         end
     end
-    File.write('csv-gerado.csv',arquivo,mode: "a")
+    File.write('dados/csv-gerado.csv',arquivo,mode: "a")
     puts "Arquivo gerado com sucesso "
     puts "Nome do arquivo é csv-gerado.csv e esta no diretório do programa"
 end
