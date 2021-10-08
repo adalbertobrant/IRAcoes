@@ -86,6 +86,10 @@ How to be assigned for a task and the time to complete the task.
 
 4- All the pull request will be accepted if they are following the guidelines from this website -> [RULES HACKTOBERFEST](https://hacktoberfest.digitalocean.com/resources/participation)
 
+5- You need FIRST to assing your name in issue ZERO, so I could assing you in the project control.
+
+Keep Hacking in the Great Hacktoberfest 2021.
+
 
 
 
