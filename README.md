@@ -37,6 +37,9 @@ Para melhorar o conhecimento de programação e ajudar no pagamento das contas p
 6- Usar hexapdf para lib  => https://hexapdf.gettalong.org/documentation/tutorials/modifying-a-pdf-document.html
 
 
+======================== CONSULTA DE AÇÕES ===========
+A consulta das ações é feita no [google finance](https://www.google.com/finance/), onde é possível verificar as siglas.
+
 
 ======================== GERANDO IMAGEM DOCKER ===========
 
@@ -48,5 +51,5 @@ docker build . -t acoes:1.0.0
 ======================== EXECUTANDO IMAGEM DOCKER ===========
 
 ``
-docker run -it --volume=./dados:/usr/src/app/dados acoes:1.0.0
+docker run -it --volume=<path_to_project>/dados:/usr/src/app/dados acoes:1.0.0
 ``
