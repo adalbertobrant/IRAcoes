@@ -40,13 +40,13 @@ Para melhorar o conhecimento de programação e ajudar no pagamento das contas p
 
 ======================== GERANDO IMAGEM DOCKER ===========
 
-´´´
+``
 docker build . -t acoes:1.0.0
-´´´
+``
 
 
 ======================== EXECUTANDO IMAGEM DOCKER ===========
 
-´´´
+``
 docker run -it acoes:1.0.0
-´´´
+``
