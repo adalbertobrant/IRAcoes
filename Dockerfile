@@ -12,6 +12,7 @@ RUN apk --no-cache add  \
         build-base \
         ruby \
         ruby-dev \
+        sqlite-dev \
         ruby-nokogiri \
         zlib-dev
 

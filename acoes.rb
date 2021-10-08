@@ -5,6 +5,9 @@ require 'nokogiri'
 require 'restclient'
 require 'json'
 require 'colorize'
+require 'sqlite3'
+
+db = SQLite3::Database.open 'dados/database.db'
 
 # declaração de constantes para usar no menu
 
