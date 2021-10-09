@@ -9,5 +9,6 @@ gem "colorize"
 gem "sqlite3"
 
 group :test do
-    gem 'minitest'
+  gem 'minitest'
+  gem 'cpf_faker'
 end
