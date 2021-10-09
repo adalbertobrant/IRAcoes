@@ -7,6 +7,9 @@ class Cpf
     resto_divisao = soma % 11
     resto_divisao == 10 ? 0 : resto_divisao
   end
+
+  private_constant :VERIFICADOR_SOMA
+
   def initialize(cpf)
     @cpf = cpf
   end
