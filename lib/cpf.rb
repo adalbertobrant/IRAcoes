@@ -1,6 +1,12 @@
 class Cpf
   attr_reader :cpf
 
+  VERIFICADOR_SOMA = -> (soma) do
+    raise TypeError unless soma.is_a?(Numeric)
+
+    resto_divisao = soma % 11
+    resto_divisao == 10 ? 0 : resto_divisao
+  end
   def initialize(cpf)
     @cpf = cpf
   end
@@ -22,17 +28,9 @@ class Cpf
                   .inject(:+)
 
     primeiro_verificador, segundo_verificador = [primeira_soma, segunda_soma]
-                                                .map(&verificador_soma)
+                                                .map(&VERIFICADOR_SOMA)
     
     return true if(primeiro_verificador === cpf[9] && segundo_verificador == cpf[10])
     false
-  end
-
-
-  verificador_soma = -> (soma) do
-    raise TypeError unless soma.is_a?(Number)
-
-    resto_divisao = soma % 11
-    resto_divisao == 10 ? 0 : resto_divisao
   end
 end
