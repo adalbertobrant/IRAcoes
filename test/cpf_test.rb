@@ -20,4 +20,12 @@ class CpfTest < Minitest::Test
     cpf = (12345678901).to_s
     refute verifica_cpf(cpf)
   end
+
+  def test_cpf_valid
+    require 'cpf_faker'
+
+    cpf = Faker::CPF.numeric.to_s
+
+    assert verifica_cpf(cpf)
+  end
 end
