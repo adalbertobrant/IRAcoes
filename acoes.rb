@@ -6,6 +6,7 @@ require 'restclient'
 require 'json'
 require 'colorize'
 require 'sqlite3'
+require_relative 'lib/cpf'
 
 db = SQLite3::Database.open 'dados/database.db'
 
@@ -27,7 +28,7 @@ def inserir_dados_usuario()
     nome = gets.chomp()
     puts "C.P.F => "
     cpf = gets.chomp()
-    return {nome: nome, cpf: cpf}
+    return {nome: nome, cpf: cpf, cpf_valido: Cpf.new(cpf).verifica_cpf}
 end
 
 def  bem_vindo()
