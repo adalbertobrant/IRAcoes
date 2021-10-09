@@ -7,3 +7,7 @@ gem "nokogiri"
 gem "rest-client"
 gem "colorize"
 gem "sqlite3"
+
+group :test do
+    gem 'minitest'
+end

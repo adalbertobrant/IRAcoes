@@ -13,6 +13,7 @@ GEM
     mime-types (3.3.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2021.0901)
+    minitest (5.14.4)
     netrc (0.11.0)
     nokogiri (1.12.5-x86_64-linux)
       racc (~> 1.4)
@@ -33,6 +34,7 @@ PLATFORMS
 DEPENDENCIES
   colorize
   i18n
+  minitest
   nokogiri
   rest-client
   sqlite3
