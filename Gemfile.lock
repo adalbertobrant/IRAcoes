@@ -1,8 +1,11 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    clipboard (1.3.6)
     colorize (0.8.1)
     concurrent-ruby (1.1.9)
+    cpf_faker (1.3.0)
+      clipboard
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
     http-accept (1.7.0)
@@ -33,6 +36,7 @@ PLATFORMS
 
 DEPENDENCIES
   colorize
+  cpf_faker
   i18n
   minitest
   nokogiri
