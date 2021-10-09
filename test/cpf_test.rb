@@ -5,4 +5,9 @@ class CpfTest < Minitest::Test
     number_cpf = rand(11111111111..99999999999)
     refute verifica_cpf(number_cpf)
   end
+
+  def test_if_cpf_has_not_eleven_digits
+    invalid_cpf = rand(1..9999999999).to_s
+    refute verifica_cpf(invalid_cpf)
+  end
 end
