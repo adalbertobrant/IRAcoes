@@ -1,4 +1,7 @@
 require 'minitest/autorun'
+
+
+
 require_relative '../lib/cpf'
 
 def verifica_cpf(cpf)
